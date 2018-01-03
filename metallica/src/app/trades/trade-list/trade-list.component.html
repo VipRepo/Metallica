@@ -1,0 +1,39 @@
+<div class="col-md-8 trade-list-box">
+        <div class="panel panel-default trade-list">
+                <div class="panel-body">
+    <table class="table table-hover"> 
+    <thead>
+        <tr>
+            <th>Trade Date</th>
+            <th>Commodity</th>
+            <th>Side</th>
+            <th>Qty(MT)</th>
+            <th>Price(/MT)</th>
+            <th>Counterparty</th>
+            <th>Location</th>
+            <th><span (click)="addNewTrade()"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let trade of trades; let i = index" (click)="setClickedRow(i, trade)"
+        [class.active]="i == selectedRow">
+            <td>{{trade.tradeDate}}</td>
+            <td>{{trade.commodity}}</td>
+            <td>{{trade.side}}</td>
+            <td>{{trade.quantity}}</td>
+            <td>{{trade.price}}</td>
+            <td>{{trade.counterparty}}</td>
+            <td>{{trade.location}}</td>
+        </tr>
+    </tbody>
+</table>
+</div></div>
+</div>
+<div class="col-md-4" *ngIf="selectedTrade">
+        <div class="panel panel-default">
+                
+  <app-trade [trade]="selectedTrade" (addEvent)="addTrade($event)"
+  (deleteEvent)="deleteTrade($event)"
+  (updateEvent)="updateTrade($event)"></app-trade>
+  </div>
+</div>

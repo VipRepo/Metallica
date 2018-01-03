@@ -1,0 +1,20 @@
+<ngb-tabset>
+  <ngb-tab>
+    <ng-template ngbTabTitle>Trades</ng-template>
+    <ng-template ngbTabContent>
+      <app-trades></app-trades>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab [disabled]="true">>
+    <ng-template ngbTabTitle>Transfers</ng-template>
+    <ng-template ngbTabContent>
+      <p>Transfers</p>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab [disabled]="true">>
+    <ng-template ngbTabTitle>Transports</ng-template>
+    <ng-template ngbTabContent>
+      <p>Transports</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

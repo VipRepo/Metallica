@@ -1,0 +1,127 @@
+<div class="row">
+    <div>
+  <div class="col-md-10">
+      <strong>Trade ID: {{trade.tradeId}}</strong>
+  </div>
+  <div class="col-md-2 pull-right">
+   
+      <span (click)="startEdit()"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
+      <span (click)="onDelete()"><i class="fa fa-trash" aria-hidden="true"></i></span>
+
+ 
+  </div>
+  </div>
+</div>
+<div class="panel-body">
+<div class="row">
+   
+  <fieldset [disabled]="!editMode">
+
+  <form class="trade-form" novalidate
+      [formGroup]="myform" (ngSubmit)="onSubmit()">
+    <div class="form-group row" [ngClass]="{
+        'has-danger': tradeDate.invalid && (tradeDate.dirty || tradeDate.touched),
+        'has-success': tradeDate.valid && (tradeDate.dirty || tradeDate.touched)
+      }">
+      <div class="col-md-4 col-sm-4">
+          <label for="tradeDate">Trade Date </label>
+      </div>
+      <div class="col-md-8 col-sm-8">
+        <input formControlName="tradeDate" type="date" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row" [ngClass]="{
+        'has-danger': commodity.invalid && (commodity.dirty || commodity.touched),
+        'has-success': commodity.valid && (commodity.dirty || commodity.touched)
+      }">
+      <div class="col-md-4">
+        <label for="commodity">Commodity</label>
+      </div>
+      <div class="col-md-8">
+        <select class="form-control" formControlName="commodity">
+          <option value="">Please Select</option>
+          <option *ngFor="let item of commodities" [value]="item.key">
+            {{item.value}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row" [ngClass]="{
+        'has-danger': side.invalid && (side.dirty || side.touched),
+        'has-success': side.valid && (side.dirty || side.touched)
+      }">
+      <div class="col-md-4">
+          <label for="side">Side:</label>
+      </div>
+      <div class="col-md-8">
+        <div class="radio">
+          <label for="buy"> <input type="radio" formControlName="side" value="BUY"/> Buy</label>
+          <label for="sell"><input type="radio" formControlName="side" value="SELL"/> Sell</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{
+        'has-danger': counterparty.invalid && (counterparty.dirty || counterparty.touched),
+        'has-success': counterparty.valid && (counterparty.dirty || counterparty.touched)
+      }">
+      <div class="col-md-4">
+          <label for="counterparty">Counterparty</label>
+      </div>
+      <div class="col-md-8">
+        <select class="form-control" formControlName="counterparty">
+          <option value="">Please Select</option>
+          <option *ngFor="let item of counterparties" [value]="item.key">
+            {{item.value}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{
+        'has-danger': price.invalid && (price.dirty || price.touched),
+        'has-success': price.valid && (price.dirty || price.touched)
+      }">
+      <div class="col-md-4">
+          <label for="price">Price</label>
+      </div>
+      <div class="col-md-8">
+        <input class="form-control" type="text" formControlName="price"/>
+      </div>
+    </div>
+    <div class="form-group row" [ngClass]="{
+        'has-danger': location.invalid && (location.dirty || location.touched),
+        'has-success': location.valid && (location.dirty || location.touched)
+      }">
+      <div class="col-md-4">
+          <label for="location">Location</label>
+      </div>
+      <div class="col-md-8">
+        <select class="form-control" formControlName="location">
+            <option value="">Please Select</option>
+            <option *ngFor="let item of locations" [value]="item.key">
+              {{item.value}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{
+        'has-danger': quantity.invalid && (quantity.dirty || quantity.touched),
+        'has-success': quantity.valid && (quantity.dirty || quantity.touched)
+      }">
+      <div class="col-md-4 col-sm-4">
+          <label for="quantity">Quantity </label>
+      </div>
+      <div class="col-md-8 col-sm-8">
+        <input formControlName="quantity" type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <button type="button" name="cancel" (click)="cancel()" class="btn btn-primary">Cancel</button>
+        <button type="submit" name="submit" [disabled]="!myform.valid" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+  </fieldset>
+  </div>
+</div>
